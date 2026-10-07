@@ -1,0 +1,272 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-light: #F4F2EC;
+    --bg-dark: #080909;
+    --bg-dark-stream: #050706;
+    --accent-green: #00E676;
+    --accent-green-glow: rgba(0, 230, 118, 0.45);
+    --accent-dark-green: #03251B;
+    --text-dark: #080909;
+    --text-muted: #6C6E69;
+    --text-light: #F4F2EC;
+  }
+
+  html {
+    background-color: var(--bg-light);
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* Lenis Smooth Scrolling */
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+
+  body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #00E676;
+    color: #080909;
+  }
+}
+
+/* Typography Helpers */
+.font-display {
+  font-family: 'Space Grotesk', 'Inter', -apple-system, sans-serif;
+  letter-spacing: -0.04em;
+}
+
+.font-mono-num {
+  font-family: 'Geist Mono', 'JetBrains Mono', monospace;
+  font-feature-settings: 'tnum' on, 'zero' on;
+}
+
+/* Custom Cursor matching user uploaded image (Black core with green glow halo) */
+.custom-cursor-glow {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #000000;
+  box-shadow: 
+    0 0 10px 4px #00E676,
+    0 0 20px 8px rgba(0, 230, 118, 0.5);
+  transition: transform 0.08s ease-out;
+}
+
+/* Floating animation for 3D Laptop */
+@keyframes float-levitate {
+  0%, 100% {
+    transform: translateY(0px) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+}
+
+.animate-laptop-float {
+  animation: float-levitate 6s ease-in-out infinite;
+}
+
+/* Pulse Glow Keyframes */
+@keyframes green-pulse {
+  0%, 100% {
+    opacity: 0.8;
+    box-shadow: 0 0 12px rgba(0, 230, 118, 0.6);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 24px rgba(0, 230, 118, 0.95);
+  }
+}
+
+.animate-green-pulse {
+  animation: green-pulse 3s infinite ease-in-out;
+}
+
+/* Neon Brush Underline */
+.neon-brush-underline {
+  position: relative;
+}
+.neon-brush-underline::after {
+  content: '';
+  position: absolute;
+  left: -2%;
+  bottom: 4px;
+  width: 104%;
+  height: 9px;
+  background-color: #00E676;
+  border-radius: 4px;
+  z-index: -1;
+  box-shadow: 0 0 16px rgba(0, 230, 118, 0.8);
+}
+
+/* Cyber Data Lines Animation */
+@keyframes stream-flow {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-stream-flow {
+  stroke-dasharray: 200 40;
+  animation: stream-flow 12s linear infinite;
+}
+
+/* Horizontal scan beam across row */
+@keyframes scan-beam-sweep {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.animate-scan-beam {
+  animation: scan-beam-sweep 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Radar pulse wave */
+@keyframes radar-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.animate-radar-ring {
+  animation: radar-ring 2.4s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
+}
+
+/* Floating layer stack animation */
+@keyframes layer-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(1deg);
+  }
+}
+
+.animate-layer-float {
+  animation: layer-float 3s ease-in-out infinite;
+}
+
+/* Database data packet ingestion */
+@keyframes db-ingest {
+  0% {
+    transform: translateY(-8px) scale(0.6);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(6px) scale(0.3);
+    opacity: 0;
+  }
+}
+
+.animate-db-packet {
+  animation: db-ingest 1.8s ease-in infinite;
+}
+
+/* Subtle terminal CRT scan line */
+@keyframes terminal-scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(1000%);
+  }
+}
+
+.animate-terminal-scan {
+  animation: terminal-scan 8s linear infinite;
+}
+
+/* Energy trace around card border */
+@keyframes border-trace-flow {
+  0% {
+    stroke-dashoffset: 600;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-border-trace {
+  stroke-dasharray: 100 200;
+  animation: border-trace-flow 4s linear infinite;
+}
+
+/* Traveling pulse across thin data lines */
+@keyframes slide-right {
+  0% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(120vw);
+    opacity: 0;
+  }
+}
+
+/* Utility to hide scrollbars while maintaining scroll functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
